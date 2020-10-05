@@ -84,8 +84,32 @@ module.exports = function (app) {
       if(!result){
         res.send('board does not exist');
       }else{
-        console.log(result.boardThreads)
-        res.send(result.boardThreads);
+        //recent 10 thread with 3 recent reply
+        // console.log(result.boardThreads)
+        var recentThreads=result.boardThreads.sort((a,b)=>(a.threadBumpedOn<b.threadBumpedOn)?1:-1);//sort to recent bumped thread
+        recentThreads=recentThreads.slice(0,10);//get the most 10 recent thread
+        var resultArrThread=[];
+        recentThreads.forEach((thread)=>{
+          var threadReplies=thread.threadReplies.sort((a,b)=>(a.replyCreatedOn<b.replyCreatedOn)?1:-1);//sort the recent created replies on thread
+          threadReplies=threadReplies.slice(0,3);//get the most 3 reply thread
+          var resultThread={//create thread elements for resultarrthread
+            _id: thread._id,
+            created_on: thread.threadCreatedOn,
+            text: thread.threadText,
+            replyCount: thread.threadReplyCount,
+            replies:[]
+          }
+          threadReplies.forEach((ele)=>{
+            var reply={//create reply element for the resultthread
+              _id: ele._id,
+              created_on: ele.replyCreatedOn,
+              text: ele.replyText
+            }
+            resultThread.replies.push(reply);//push the reply element to the result thread.replies array
+          })
+          resultArrThread.push(resultThread);//push te resultthread to result arr thread
+        })
+        res.send(resultArrThread);
       }
     })
   })
