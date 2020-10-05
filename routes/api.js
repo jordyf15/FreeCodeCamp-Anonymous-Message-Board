@@ -96,7 +96,7 @@ module.exports = function (app) {
             _id: thread._id,
             created_on: thread.threadCreatedOn,
             text: thread.threadText,
-            replyCount: thread.threadReplyCount,
+            replycount: thread.threadReplyCount,
             replies:[]
           }
           threadReplies.forEach((ele)=>{
@@ -210,7 +210,22 @@ module.exports = function (app) {
           // console.log('not exist',)
           res.send('thread does not exist')
         }else{
-          res.send(searchedThread);
+          // res.send(searchedThread);
+          var resultThread={
+            _id: searchedThread._id,
+            created_on: searchedThread.created_on,
+            text: searchedThread.threadText,
+            replies: []
+          };
+          searchedThread.threadReplies.forEach((ele)=>{
+            var reply={
+              _id: ele._id,
+              created_on: ele.replyCreatedOn,
+              text: ele.replyText
+            }
+            resultThread.replies.push(reply);
+          })
+          res.send(resultThread);
         }
       }
     })
