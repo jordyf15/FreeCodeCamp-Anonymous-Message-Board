@@ -16,7 +16,15 @@ module.exports = function (app) {
   .get((req,res)=>{//get list of all board
     board.find()
     .then((result)=>{
-      res.send(result);
+      var resultArrBoard=[];
+      result.forEach((ele)=>{
+        var board={
+          boardName: ele.boardName,
+          _id: ele._id
+        }
+        resultArrBoard.push(board);
+      })
+      res.send(resultArrBoard);
     })
     .catch((err)=>{
       console.log(err);
@@ -78,7 +86,7 @@ module.exports = function (app) {
 
 
   app.route('/api/threads/:board')
-  .get((req,res)=>{//get all threads of board (mungkin hrs di atur lgi bwt sesuain permintaan)
+  .get((req,res)=>{//get 10 recent threads of board 
     board.findOne({boardName: req.params.board})
     .then((result)=>{
       if(!result){
@@ -197,8 +205,8 @@ module.exports = function (app) {
 
 
   app.route('/api/replies/:board')
-  .get((req,res)=>{//get all replies of thread  (mungkin hrs di atur lgi bwt sesuain permintaan)
-    board.findOne({boardName: req.params.board})//nanti search thread id nya pake query
+  .get((req,res)=>{//get all replies of thread  
+    board.findOne({boardName: req.params.board})
     .then((result)=>{
       if(!result){
         res.send('board does not exist');
@@ -207,10 +215,8 @@ module.exports = function (app) {
           return ele._id==req.query.thread_id;
         })[0];
         if(searchedThread==undefined){
-          // console.log('not exist',)
           res.send('thread does not exist')
         }else{
-          // res.send(searchedThread);
           var resultThread={
             _id: searchedThread._id,
             created_on: searchedThread.created_on,

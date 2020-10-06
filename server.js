@@ -32,6 +32,10 @@ console.log("Connected to Database");
     .get(function (req, res) {
       res.sendFile(process.cwd() + '/views/thread.html');
     });
+  app.route('/boardList')
+  .get((req,res)=>{
+    res.sendFile(process.cwd()+'/views/boardList.html');
+  })
   
   //Index page (static HTML)
   app.route('/')
@@ -58,6 +62,7 @@ console.log("Connected to Database");
   //Start our server and tests!
   app.listen(process.env.PORT || 3000, function () {
     console.log("Listening on port " + process.env.PORT);
+    process.env.NODE_ENV='test';
     if(process.env.NODE_ENV==='test') {
       console.log('Running Tests...');
       setTimeout(function () {

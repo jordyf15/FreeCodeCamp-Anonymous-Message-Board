@@ -42,22 +42,22 @@
       <h2 style="text-align: left">API Tests:</h2>
       <h4>New Board (Post /api/boards)</h4>
       <form action="/api/boards" method="post" id="newBoard">
-      <input type="text" placeholder='The New Board Name' name="board_name" required=''><br>
-      <input type='text' placeholder="Password to Delete" name='delete_password' required=''>
-      <input type='submit' value='Submit'>
+        <input type="text" placeholder='The New Board Name' name="board_name" required=''><br>
+        <input type='text' placeholder="Password to Delete" name='delete_password' required=''>
+        <input type='submit' value='Submit'>
       </form>
       <hr>
       <h4>Delete Board(Delete /api/boards)</h4>
       <form id='deleteBoard'>
-      <input type="text" placeholder='Board Id to Delete' name='board_id' required=''><br>
-      <input type="text" placeholder='Pass to Delete' name='delete_password' required=''><br>
-      <input type="submit" value='Delete'>
+        <input type="text" placeholder='Board Id to Delete' name='board_id' required=''><br>
+        <input type="text" placeholder='Pass to Delete' name='delete_password' required=''><br>
+        <input type="submit" value='Delete'>
       </form>
       <hr>
       <h4>Report Board(Put /api/boards)</h4>
       <form id='reportBoard'>
-      <input type="text" placeholder="Board Id to Report" name='board_id' required=''><br>
-      <input type="submit" value='Report'>
+        <input type="text" placeholder="Board Id to Report" name='board_id' required=''><br>
+        <input type="submit" value='Report'>
       </form>
       <hr>
 
@@ -121,97 +121,6 @@
     <script src="https://code.jquery.com/jquery-2.2.1.min.js"
             integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
             crossorigin="anonymous"></script>
-    <script>
-      $(function() {
-        $('#deleteBoard').submit(function(event){
-          console.log('delete')
-          var url= '/api/boards'
-          $.ajax({
-            type:"DELETE",
-            url: url,
-            data: $(this).serialize(),
-            success: ((response)=>{
-              alert(response);
-            })
-          })
-          event.preventDefault();
-        });
-        $('#reportBoard').submit(function(event){
-          var url='/api/boards'
-          $.ajax({
-            type:'PUT',
-            url: url,
-            data: $(this).serialize(),
-            success: ((response)=>{
-              alert(response);
-            })
-          })
-          event.preventDefault();
-        })
-        $('#viewBoards').on('click',function(){
-          window.location='/api/boards'
-        })
-        $('#newThread').submit(function(){
-          var board = $('#board1').val();
-          $(this).attr('action', "/api/threads/" + board);
-        });
-        $('#newReply').submit(function(){
-          var board = $('#board4').val();
-          $(this).attr('action', "/api/replies/" + board);
-        });
-        $('#reportThread').submit(function(e){
-          var url = "/api/threads/"+$('#board2').val();
-          $.ajax({
-            type: "PUT",
-            url: url,
-            data: $(this).serialize(),
-            success: function(data)
-            {
-              alert(data);
-            }
-          });
-          e.preventDefault();
-        });
-        $('#deleteThread').submit(function(e){
-          var url = "/api/threads/"+$('#board3').val();
-          $.ajax({
-            type: "DELETE",
-            url: url,
-            data: $(this).serialize(),
-            success: function(data)
-            {
-              alert(data);
-            }
-          });
-          e.preventDefault();
-        });
-        $('#reportReply').submit(function(e){
-          var url = "/api/replies/"+$('#board5').val();
-          $.ajax({
-            type: "PUT",
-            url: url,
-            data: $(this).serialize(),
-            success: function(data)
-            {
-              alert(data);
-            }
-          });
-          e.preventDefault();
-        });
-        $('#deleteReply').submit(function(e){
-          var url = "/api/replies/"+$('#board6').val();
-          $.ajax({
-            type: "DELETE",
-            url: url,
-            data: $(this).serialize(),
-            success: function(data)
-            {
-              alert(data);
-            }
-          });
-          e.preventDefault();
-        });
-      });
-   </script>
+            <script src="/public/indexScript.js"></script>
   </body>
 </html>
