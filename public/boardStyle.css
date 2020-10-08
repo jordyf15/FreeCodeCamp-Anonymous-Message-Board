@@ -1,0 +1,55 @@
+body{
+    margin: 0px;
+    height: 100vh;
+    width: 100vw;
+    background-color:  #40739e;
+}
+h1{
+    width: 50%;
+    text-align: center;
+    margin: 10px auto 50px auto;
+}
+#submitNewThread{
+    background-color:  #487eb0;
+    border: 3px solid #192a56;
+    text-align: center;
+    width: 60%;
+    margin: 0px auto 0px auto;
+}
+.thread{
+    background-color:  #487eb0;
+    border: 3px solid #192a56;
+    width: 50%;
+    text-align: center;
+    margin: 50px auto 0px auto;
+}
+.replies{
+    text-align: center;
+}
+.reply{
+    border: 2px solid #192a56;
+    width: 80%;
+    margin: 10px auto 0px auto;
+}
+.reportButton{
+    background-color: #7f8fa6; 
+    border-color:  #273c75;
+}
+.submitButton{
+    background-color: #7f8fa6; 
+    border-color:  #273c75;
+}
+.deleteButton{
+    background-color: #7f8fa6; 
+    border-color:  #273c75;
+    margin-left: 10px;
+}
+form{
+    margin: 0px;
+}
+input{
+    margin: 10px 0px 10px 0px;
+}
+#newReply{
+    margin-top: 10px;
+}

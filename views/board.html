@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/public/style.css">
+    <link rel="stylesheet" href="/public/boardStyle.css">
   </head>
   <body>
     <header>
@@ -17,19 +17,19 @@
     <div id='submitNewThread'>
       <h3>Submit a new thread:</h3>
       <form id="newThread" method="post" action="/api/">
-        <textarea rows="8" cols="120" type='text' placeholder='Thread text...' name='text' required=''></textarea><br>
+        <textarea rows="8" cols="80" type='text' placeholder='Thread text...' name='text' required=''></textarea><br>
         <input type='text' placeholder='password to delete' name='delete_password' required=''><br>
-        <input type="submit" value="Submit">
+        <input class="submitButton"type="submit" value="Submit">
       </form>
     </div>
     
     <div id='boardDisplay'></div>
-    
-    <hr style='margin: 50px; margin-top: 200px'>
-    
-    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
+    <script src="https://code.jquery.com/jquery-3.5.1.js" 
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
+    crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-2.2.1.min.js"
             integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
-            crossorigin="anonymous"></script>
+            crossorigin="anonymous"></script> -->
     <script src="/public/boardScript.js"></script>
   </body>
 </html>

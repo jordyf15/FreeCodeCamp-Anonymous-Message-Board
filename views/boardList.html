@@ -1,17 +1,26 @@
 <html>
-    <head></head>
+    <head>
+        <link rel="stylesheet" href="./../public/boardListStyle.css">
+    </head>
     <body>
         <header>
             <h1>List of All Boards</h1>
         </header>
         <!-- bikin form bwt board baru -->
-
+        <div>
+        <form id="newBoard">
+            <h2>Create a New Board</h2>
+            <input type="text" placeholder='The New Board Name' name="board_name" required=''><br>
+            <input type='text' placeholder="Password to Delete" name='delete_password' required=''><br>
+            <input type='submit' value='Submit' id="newBoardButton">
+        </form>
+        </div>
         <div id='boardList'>
         </div>
         <hr style='margin: 50px; margin-top: 200px'>
-        <script src="https://code.jquery.com/jquery-2.2.1.min.js"
-            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
-            crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" 
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
+        crossorigin="anonymous"></script>
     <script src="/public/boardListScript.js"></script>
     </body>
 </html>

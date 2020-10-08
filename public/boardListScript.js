@@ -11,7 +11,7 @@ $(function(){
                     '<form id="deleteBoard">'+
                     '<input type="hidden" name="board_id" value='+ele._id+'>'
                     +'<input type="text" placeHolder="password to delete" name="delete_password">'+
-                    '<button type="submit" >Delete</button> </form>'+
+                    '<button type="submit" class="deleteBoard">Delete</button> </form>'+
                     '<button id="reportBoard" value='+ele._id+'>Report</button>'
                     +'</div>'
                 boardListFill.push(boardHtml);
@@ -20,18 +20,31 @@ $(function(){
             $('#boardList').html(boardListFill);
         }
     })
+    $('#newBoard').on('submit',function(event){
+        $.ajax({
+            url: '/api/boards',
+            type: 'POST',
+            data: $(this).serialize(),
+            success: function (data){
+                if(!alert(data)){
+                    window.location.reload();
+                }
+            }
+        })
+        event.preventDefault();
+    })
     $('#boardList').on('submit','#deleteBoard',function(event){
-        // console.log($(this).serialize())
         $.ajax({
             url: '/api/boards',
             type:'DELETE',
             data: $(this).serialize(),
             success: function(data){
-                alert(data);
+                if(!alert(data)){
+                    window.location.reload();
+                }
             }
         })
         event.preventDefault();
-        window.location.reload();
     })
     $('#boardList').on('click','#viewBoard',function(event){
         window.location='/b/'+$(this).val();
@@ -42,8 +55,11 @@ $(function(){
             type: 'put',
             data: {board_id: $(this).val()},
             success: function(data){
-                alert(data);
+                if(!alert(data)){
+                    window.location.reload();
+                }
             }
         })
+        event.preventDefault();
     })
 })
