@@ -1,4 +1,17 @@
 $(function() {
+    $('#newBoard').submit(function(e){
+      console.log('board created')
+      var url='/api/boards'
+      $.ajax({
+        type: 'POST',
+        url: url,
+        data :$(this).serialize(),
+        success: (()=>{
+          alert('board successfully created');
+        })
+      })
+      e.preventDefault();
+    })
     $('#deleteBoard').submit(function(event){
       console.log('delete')
       var url= '/api/boards'

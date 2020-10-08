@@ -39,7 +39,7 @@ module.exports = function (app) {
     newBoard.save()
     .then((result)=>{
       console.log(result);
-      res.send(result);
+      res.send(result.boardName+' board created successfully');
     })
     .catch((err)=>{
       console.log(err);
@@ -219,7 +219,7 @@ module.exports = function (app) {
         }else{
           var resultThread={
             _id: searchedThread._id,
-            created_on: searchedThread.created_on,
+            created_on: searchedThread.threadCreatedOn,
             text: searchedThread.threadText,
             replies: []
           };
