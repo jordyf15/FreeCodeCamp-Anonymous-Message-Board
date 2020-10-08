@@ -93,7 +93,6 @@ module.exports = function (app) {
         res.send('board does not exist');
       }else{
         //recent 10 thread with 3 recent reply
-        // console.log(result.boardThreads)
         var recentThreads=result.boardThreads.sort((a,b)=>(a.threadBumpedOn<b.threadBumpedOn)?1:-1);//sort to recent bumped thread
         recentThreads=recentThreads.slice(0,10);//get the most 10 recent thread
         var resultArrThread=[];
@@ -122,7 +121,6 @@ module.exports = function (app) {
     })
   })
   .post((req,res)=>{//create a new thread in a board
-    console.log(req.params.board);
     board.findOne({boardName: req.params.board})
     .then((result)=>{
       if(!result){
